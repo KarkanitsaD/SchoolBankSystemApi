@@ -18,12 +18,14 @@ public class StudentConfiguration : IEntityTypeConfiguration<Student>
         builder
             .HasMany(x => x.MoneyTransfersFromStudent)
             .WithOne(x => x.StudentFrom)
-            .HasForeignKey(x => x.StudentFromId);
+            .HasForeignKey(x => x.StudentFromId)
+            .OnDelete(DeleteBehavior.NoAction);
 
         builder
             .HasMany(x => x.MoneyTransfersToStudent)
             .WithOne(x => x.StudentTo)
-            .HasForeignKey(x => x.StudentToId);
+            .HasForeignKey(x => x.StudentToId)
+            .OnDelete(DeleteBehavior.NoAction);
 
         builder
             .HasMany(x => x.StudentRewards)
