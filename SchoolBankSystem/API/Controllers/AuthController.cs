@@ -20,4 +20,18 @@ public class AuthController : ControllerBase
     {
         return Ok();
     }
+
+    [HttpPost]
+    [Route("register/teacher")]
+    public async Task<IActionResult> RegisterTeacher(LoginModel loginModel)
+    {
+        return Ok();
+    }
+
+    [HttpPost]
+    [Route("register/student")]
+    public async Task<IActionResult> RegisterStudent(LoginModel loginModel)
+    {
+        return Ok();
+    }
 }
