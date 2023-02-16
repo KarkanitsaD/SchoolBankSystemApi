@@ -11,9 +11,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Response\" />
+    <Folder Include="Models\Certificate\" />
+    <Folder Include="Models\MoneyTransfer\" />
+    <Folder Include="Models\CertificatePurchase\" />
+    <Folder Include="Models\StudentReward\" />
+    <Folder Include="Models\Reward\" />
+    <Folder Include="Models\Teacher\" />
+    <Folder Include="Models\Student\" />
     <Folder Include="Helpers\" />
+    <Folder Include="MappingProfiles\" />
     <Folder Include="Services\IServices\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
   </ItemGroup>
 
 </Project>
