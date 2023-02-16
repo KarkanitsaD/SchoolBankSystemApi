@@ -6,11 +6,11 @@ namespace DAL.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        protected DbContext DbContext;
+        protected SchoolBankSystemDbContext DbContext;
 
         protected DbSet<TEntity> DbSet { get; set; }
 
-        public Repository(DbContext dbContext)
+        public Repository(SchoolBankSystemDbContext dbContext)
         {
             DbContext = dbContext;
             DbSet = DbContext.Set<TEntity>();
