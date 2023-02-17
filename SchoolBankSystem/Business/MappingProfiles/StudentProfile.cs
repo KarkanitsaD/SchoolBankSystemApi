@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Business.Models.Auth;
 using Business.Models.Student;
 using DAL.Entities;
 
@@ -9,6 +10,7 @@ namespace Business.MappingProfiles
         public StudentProfile()
         {
             CreateMap<Student, StudentModel>();
+            CreateMap<RegisterModel, Student>();
         }
     }
 }

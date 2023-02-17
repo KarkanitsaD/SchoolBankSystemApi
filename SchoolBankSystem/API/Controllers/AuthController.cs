@@ -1,4 +1,5 @@
-﻿using Business.Models.Login;
+﻿using Business.Models.Auth;
+using Business.Services.IServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -7,6 +8,13 @@ namespace API.Controllers;
 [Route("api/[controller]")]
 public class AuthController : ControllerBase
 {
+    private readonly IAuthService _authService;
+
+    public AuthController(IAuthService authService)
+    {
+        _authService = authService;
+    }
+
     [HttpPost]
     [Route("login/student")]
     public async Task<IActionResult> LoginAsStudent(LoginModel loginModel)
@@ -23,15 +31,16 @@ public class AuthController : ControllerBase
 
     [HttpPost]
     [Route("register/teacher")]
-    public async Task<IActionResult> RegisterTeacher(LoginModel loginModel)
+    public async Task<IActionResult> RegisterTeacher(RegisterModel registerModel)
     {
         return Ok();
     }
 
     [HttpPost]
     [Route("register/student")]
-    public async Task<IActionResult> RegisterStudent(LoginModel loginModel)
+    public async Task<IActionResult> RegisterStudent(RegisterModel registerModel)
     {
+        await _authService.RegisterStudentAsync(registerModel);
         return Ok();
     }
 }
