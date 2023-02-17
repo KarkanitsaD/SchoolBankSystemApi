@@ -2,8 +2,14 @@
 {
     public class AuthenticationStudentModel
     {
-        public string Jwt { get; set; }
+        public AuthenticationStudentModel(StudentModel student, string jwt)
+        {
+            Student = student;
+            Jwt = jwt;
+        }
 
-        public StudentModel Student { get; set; }
+        public StudentModel Student { get; }
+
+        public string Jwt { get; }
     }
 }
