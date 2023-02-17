@@ -1,4 +1,4 @@
-﻿namespace Business.Models.Login;
+﻿namespace Business.Models.Auth;
 
 public class LoginModel
 {
