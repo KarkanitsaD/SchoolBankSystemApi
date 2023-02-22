@@ -1,4 +1,5 @@
-﻿using Business.Models.Student;
+﻿using Business.Constants;
+using Business.Models.Student;
 using Business.Models.Teacher;
 using Business.Services.IServices;
 using Microsoft.IdentityModel.Tokens;
@@ -10,7 +11,7 @@ namespace Business.Services
 {
     public class TokenService : ITokenService
     {
-        private const string SecretKey = "CS:GO";
+        private const string SecretKey = "CS:GO-TheBestGameInTheWorld";
 
         public string GenerateStudentJwt(StudentModel student)
         {
@@ -44,7 +45,7 @@ namespace Business.Services
             {
                 new Claim(ClaimTypes.NameIdentifier, student.Id.ToString()),
                 new Claim(ClaimTypes.MobilePhone, student.Phone),
-                new Claim(ClaimTypes.Role, "Student")
+                new Claim(ClaimTypes.Role, Roles.Student)
             };
         }
 
@@ -54,7 +55,7 @@ namespace Business.Services
             {
                 new Claim(ClaimTypes.NameIdentifier, student.Id.ToString()),
                 new Claim(ClaimTypes.MobilePhone, student.Phone),
-                new Claim(ClaimTypes.Role, "Teacher")
+                new Claim(ClaimTypes.Role, Roles.Teacher)
             };
         }
 

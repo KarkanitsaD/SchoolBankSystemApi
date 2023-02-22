@@ -19,20 +19,26 @@ public class AuthController : ControllerBase
     [Route("login/student")]
     public async Task<IActionResult> LoginAsStudent(LoginModel loginModel)
     {
-        return Ok();
+        var result = await _authService.LoginStudentAsync(loginModel);
+
+        return Ok(result);
     }
 
     [HttpPost]
     [Route("login/teacher")]
     public async Task<IActionResult> LoginAsTeacher(LoginModel loginModel)
     {
-        return Ok();
+        var result = await _authService.LoginTeacherAsync(loginModel);
+
+        return Ok(result);
     }
 
     [HttpPost]
     [Route("register/teacher")]
     public async Task<IActionResult> RegisterTeacher(RegisterModel registerModel)
     {
+        await _authService.RegisterTeacherAsync(registerModel);
+
         return Ok();
     }
 
@@ -41,6 +47,7 @@ public class AuthController : ControllerBase
     public async Task<IActionResult> RegisterStudent(RegisterModel registerModel)
     {
         await _authService.RegisterStudentAsync(registerModel);
+
         return Ok();
     }
 }
