@@ -19,7 +19,7 @@ namespace Business.Services
             var credentials = GetSigningCredentials();
             var jwt = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.UtcNow.Date.AddSeconds(60),
+                expires: DateTime.Now.AddHours(24),
                 signingCredentials: credentials
             );
 
@@ -32,7 +32,7 @@ namespace Business.Services
             var credentials = GetSigningCredentials();
             var jwt = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.UtcNow.Date.AddSeconds(60),
+                expires: DateTime.Now.AddHours(24),
                 signingCredentials: credentials
             );
 

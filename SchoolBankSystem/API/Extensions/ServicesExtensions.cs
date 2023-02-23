@@ -53,6 +53,10 @@ namespace API.Extensions
                     options.RequireHttpsMetadata = false;
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
+                        ValidateAudience = false,
+                        ValidateActor = false,
+                        ValidateIssuer = false,
+                        ValidateTokenReplay = false,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.ASCII.GetBytes("CS:GO-TheBestGameInTheWorld")),
