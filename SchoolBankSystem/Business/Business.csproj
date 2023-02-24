@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <Folder Include="Models\Certificate\" />
-    <Folder Include="Models\MoneyTransfer\" />
     <Folder Include="Models\CertificatePurchase\" />
     <Folder Include="Models\StudentReward\" />
     <Folder Include="Models\Reward\" />
@@ -20,11 +19,11 @@
     <Folder Include="Models\Student\" />
     <Folder Include="Helpers\" />
     <Folder Include="MappingProfiles\" />
-    <Folder Include="Services\IServices\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
   </ItemGroup>
 
 </Project>

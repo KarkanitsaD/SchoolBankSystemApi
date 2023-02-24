@@ -18,6 +18,7 @@ namespace API.Extensions
                 .AddAutoMapper(typeof(TokenService).Assembly)
                 .AddScoped(typeof(ITokenService), typeof(TokenService))
                 .AddScoped(typeof(IAuthService), typeof(AuthService))
+                .AddScoped(typeof(IMoneyTransferService), typeof(MoneyTransferService))
                 ;
 
             return services;

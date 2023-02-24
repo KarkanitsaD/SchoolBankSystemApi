@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Business.Models.MoneyTransfer;
 using DAL.Entities;
 
 namespace Business.MappingProfiles
@@ -7,7 +8,7 @@ namespace Business.MappingProfiles
     {
         public MoneyTransferProfile()
         {
-            CreateMap<MoneyTransfer, MoneyTransferProfile>();
+            CreateMap<MoneyTransfer, MoneyTransferModel>();
         }
     }
 }

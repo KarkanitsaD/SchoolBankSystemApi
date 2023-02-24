@@ -10,6 +10,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddAppDbContext(builder.Configuration.GetConnectionString("SchoolBankSystem"));
 builder.Services.AddRepositories();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddServices();
 builder.Services.AddAppAuthentication();
 builder.Services.AddAppAuthorization();
