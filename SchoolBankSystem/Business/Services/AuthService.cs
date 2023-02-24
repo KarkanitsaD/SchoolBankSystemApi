@@ -26,6 +26,11 @@ namespace Business.Services
 
         public async Task RegisterStudentAsync(RegisterModel registerModel)
         {
+            if (await _studentRepository.AnyAsync(x => x.Phone == registerModel.Phone))
+            {
+                throw new Exception($"Student with {registerModel.Phone} phone number already exists.");
+            }
+
             var student = _mapper.Map<RegisterModel, Student>(registerModel);
             student.PasswordHash = GetPasswordHash(registerModel.Password);
             await _studentRepository.CreateAsync(student);
@@ -33,14 +38,19 @@ namespace Business.Services
 
         public async Task RegisterTeacherAsync(RegisterModel registerModel)
         {
+            if (await _teacherRepository.AnyAsync(x => x.Phone == registerModel.Phone))
+            {
+                throw new Exception($"Teacher with {registerModel.Phone} phone number already exists.");
+            }
+
             var teacher = _mapper.Map<RegisterModel, Teacher>(registerModel);
-            teacher.PasswordHash = PasswordHasher.GeneratePasswordHash(registerModel.Password);
+            teacher.PasswordHash = GetPasswordHash(registerModel.Password);
             await _teacherRepository.CreateAsync(teacher);
         }
 
         public async Task<AuthenticationStudentModel> LoginStudentAsync(LoginModel loginModel)
         {
-            var passwordHash = PasswordHasher.GeneratePasswordHash(loginModel.Password);
+            var passwordHash = GetPasswordHash(loginModel.Password);
             var students = await _studentRepository.GetAllAsync(x => x.Phone == loginModel.Phone && x.PasswordHash == passwordHash);
             if (!students.Any())
             {
