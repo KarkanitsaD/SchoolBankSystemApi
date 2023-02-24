@@ -1,5 +1,6 @@
 ﻿using DAL.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System.Linq.Expressions;
 
 namespace DAL.Repositories
@@ -19,6 +20,13 @@ namespace DAL.Repositories
         public async Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate)
         {
             var result = await DbSet.Where(predicate).ToListAsync();
+
+            return result;
+        }
+
+        public async Task<TEntity> GetFirstAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            var result = await DbSet.Where(predicate).FirstOrDefaultAsync();
 
             return result;
         }
@@ -68,6 +76,11 @@ namespace DAL.Repositories
             }
 
             return result;
+        }
+
+        public async Task<IDbContextTransaction> BeginTransactionAsync()
+        {
+            return await DbContext.Database.BeginTransactionAsync();
         }
     }
 }
