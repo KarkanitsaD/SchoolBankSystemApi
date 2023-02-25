@@ -43,7 +43,7 @@ namespace Business.Services
 
             if (studentFrom.Sum < transferModel.Sum)
             {
-                throw new Exception("Not enough funds for transaction");
+                throw new Exception("Not enough funds for transaction.");
             }
 
             var studentTo = await _studentRepository.GetFirstAsync(x => x.Id == transferModel.StudentToId);
