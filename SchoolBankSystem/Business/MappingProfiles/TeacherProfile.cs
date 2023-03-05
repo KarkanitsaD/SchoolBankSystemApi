@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Business.Models.Auth;
 using Business.Models.Teacher;
 using DAL.Entities;
 
@@ -8,7 +9,8 @@ namespace Business.MappingProfiles
     {
         public TeacherProfile()
         {
-            CreateMap<Teacher, TeacherModel>();
+            CreateMap<Teacher, TeacherModel>().ReverseMap();
+            CreateMap<RegisterModel, Teacher>();
         }
     }
 }

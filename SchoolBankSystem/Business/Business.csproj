@@ -13,8 +13,6 @@
   <ItemGroup>
     <Folder Include="Models\Certificate\" />
     <Folder Include="Models\CertificatePurchase\" />
-    <Folder Include="Models\StudentReward\" />
-    <Folder Include="Models\Reward\" />
     <Folder Include="Models\Teacher\" />
     <Folder Include="Models\Student\" />
     <Folder Include="Helpers\" />
