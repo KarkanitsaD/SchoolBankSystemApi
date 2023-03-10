@@ -13,10 +13,16 @@ namespace Business.Services
     {
         private readonly IMapper _mapper;
         private readonly ITokenService _tokenService;
-        private readonly IRepository<Student> _studentRepository;
-        private readonly IRepository<Teacher> _teacherRepository;
+        private readonly IStudentRepository _studentRepository;
+        private readonly ITeacherRepository _teacherRepository;
 
-        public AuthService(IMapper mapper, ITokenService tokenService, IRepository<Student> studentRepository, IRepository<Teacher> teacherRepository)
+        public AuthService
+        (
+            IMapper mapper,
+            ITokenService tokenService,
+            IStudentRepository studentRepository,
+            ITeacherRepository teacherRepository
+        )
         {
             _mapper = mapper;
             _tokenService = tokenService;
@@ -51,13 +57,13 @@ namespace Business.Services
         public async Task<AuthenticationStudentModel> LoginStudentAsync(LoginModel loginModel)
         {
             var passwordHash = GetPasswordHash(loginModel.Password);
-            var students = await _studentRepository.GetAllAsync(x => x.Phone == loginModel.Phone && x.PasswordHash == passwordHash);
-            if (!students.Any())
+            var studentEntity = await _studentRepository.GetFullStudentAsync(x => x.Phone == loginModel.Phone && x.PasswordHash == passwordHash);
+            if (studentEntity == null)
             {
                 throw new Exception("User not found.");
             }
 
-            var student = _mapper.Map<Student, StudentModel>(students[0]);
+            var student = _mapper.Map<Student, StudentModel>(studentEntity);
             var jwt = _tokenService.GenerateStudentJwt(student);
             var authModel = new AuthenticationStudentModel(student, jwt);
 
@@ -67,13 +73,13 @@ namespace Business.Services
         public async Task<AuthenticationTeacherModel> LoginTeacherAsync(LoginModel loginModel)
         {
             var passwordHash = GetPasswordHash(loginModel.Password);
-            var teachers = await _teacherRepository.GetAllAsync(x => x.Phone == loginModel.Phone && x.PasswordHash == passwordHash);
-            if (!teachers.Any())
+            var teacherEntity = await _teacherRepository.GetFullTeacherAsync(x => x.Phone == loginModel.Phone && x.PasswordHash == passwordHash);
+            if (teacherEntity == null)
             {
                 throw new Exception("User not found.");
             }
 
-            var teacher = _mapper.Map<Teacher, TeacherModel>(teachers[0]);
+            var teacher = _mapper.Map<Teacher, TeacherModel>(teacherEntity);
             var jwt = _tokenService.GenerateTeacherJwt(teacher);
             var authModel = new AuthenticationTeacherModel(teacher, jwt);
 
