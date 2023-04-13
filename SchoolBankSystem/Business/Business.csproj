@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Certificate\" />
     <Folder Include="Models\CertificatePurchase\" />
     <Folder Include="Models\Teacher\" />
     <Folder Include="Models\Student\" />

@@ -14,6 +14,15 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddServices();
 builder.Services.AddAppAuthentication();
 builder.Services.AddAppAuthorization();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CORS", policy =>
+    {
+        policy.AllowAnyOrigin();
+        policy.AllowAnyHeader();
+        policy.AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
@@ -24,6 +33,8 @@ if (app.Environment.IsDevelopment())
 }
 
 /*app.UseHttpsRedirection();*/
+
+app.UseCors("CORS");
 
 app.UseAuthentication();
 

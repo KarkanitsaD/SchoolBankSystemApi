@@ -1,14 +1,11 @@
-﻿using Business.Constants;
-using Business.Models.Student;
+﻿using Business.Models.Student;
 using Business.Services.IServices;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(Policy = Roles.Teacher)]
     public class StudentController : ControllerBase
     {
         private readonly IStudentService _studentService;
@@ -18,7 +15,8 @@ namespace API.Controllers
             _studentService = studentService;
         }
 
-        [HttpGet]
+        [HttpPost]
+        [Route("search")]
         public async Task<IActionResult> GetAllAsync(StudentFilterModel studentFilterModel)
         {
             var result = await _studentService.GetAllAsync(studentFilterModel);

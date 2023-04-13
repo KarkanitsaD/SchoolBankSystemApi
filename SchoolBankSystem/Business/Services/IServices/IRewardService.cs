@@ -4,7 +4,7 @@ namespace Business.Services.IServices
 {
     public interface IRewardService
     {
-        Task<List<RewardModel>> GetAllAsync();
+        Task<List<RewardModel>> GetAllAsync(RewardFilterModel rewardFilterModel);
 
         Task<RewardModel> GetAsync(Guid id);
 

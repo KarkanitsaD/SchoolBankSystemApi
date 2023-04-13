@@ -1,6 +1,8 @@
 ﻿using Business.Models.Auth;
 using Business.Models.Student;
 using Business.Models.Teacher;
+using System.Security.Claims;
+using System.Security.Principal;
 
 namespace Business.Services.IServices
 {
@@ -13,5 +15,7 @@ namespace Business.Services.IServices
         Task<AuthenticationStudentModel> LoginStudentAsync(LoginModel loginModel);
 
         Task<AuthenticationTeacherModel> LoginTeacherAsync(LoginModel loginModel);
+
+        Task<AuthenticationTeacherModel> AuthenticateTeacherAsync(ClaimsPrincipal user);
     }
 }

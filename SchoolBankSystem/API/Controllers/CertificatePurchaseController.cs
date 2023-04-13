@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class CertificatePurchaseController : ControllerBase
     {
         private readonly ICertificatePurchaseService _certificatePurchaseService;

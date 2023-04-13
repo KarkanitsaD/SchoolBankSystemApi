@@ -19,6 +19,9 @@ namespace API.Extensions
                 .AddScoped(typeof(ITokenService), typeof(TokenService))
                 .AddScoped(typeof(IAuthService), typeof(AuthService))
                 .AddScoped(typeof(IMoneyTransferService), typeof(MoneyTransferService))
+                .AddScoped(typeof(IStudentService), typeof(StudentService))
+                .AddScoped(typeof(ITeacherService), typeof(TeacherService))
+                .AddScoped(typeof(IRewardService), typeof(RewardService))
                 ;
 
             return services;
@@ -35,6 +38,8 @@ namespace API.Extensions
         {
             services
                 .AddScoped(typeof(IRepository<>), typeof(Repository<>))
+                .AddScoped(typeof(ITeacherRepository), typeof(TeacherRepository))
+                .AddScoped(typeof(IStudentRepository), typeof(StudentRepository))
                 ;
 
             return services;

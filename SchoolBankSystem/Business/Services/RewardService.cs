@@ -3,6 +3,7 @@ using Business.Models.Reward;
 using Business.Services.IServices;
 using DAL.Entities;
 using DAL.Repositories.IRepositories;
+using System.Linq.Expressions;
 
 namespace Business.Services
 {
@@ -30,9 +31,19 @@ namespace Business.Services
             return result;
         }
 
-        public async Task<List<RewardModel>> GetAllAsync()
+        public async Task<List<RewardModel>> GetAllAsync(RewardFilterModel rewardFilterModel)
         {
-            var rewards = await _rewardRepository.GetAllAsync(x => true);
+            Expression<Func<Reward, bool>> filterPredicate = _ => true;
+
+            if (rewardFilterModel != null)
+            {
+                filterPredicate = x =>
+                (rewardFilterModel.Description == null || x.Description.ToLower().StartsWith(rewardFilterModel.Description.ToLower())) ||
+                (rewardFilterModel.MinSum == null || x.Sum >= rewardFilterModel.MinSum) ||
+                (rewardFilterModel.MaxSum == null || x.Sum <= rewardFilterModel.MaxSum);
+            }
+
+            var rewards = await _rewardRepository.GetAllAsync(filterPredicate);
             var models = _mapper.Map<List<Reward>, List<RewardModel>>(rewards);
 
             return models;

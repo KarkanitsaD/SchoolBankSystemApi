@@ -41,5 +41,14 @@ namespace API.Controllers
 
             return Ok();
         }
+
+        [HttpPost]
+        [Route("search")]
+        public async Task<IActionResult> GetAllAsync(CertificateFilterModel filterModel)
+        {
+            var result = await _service.GetAllAsync(filterModel);
+
+            return Ok(result);
+        }
     }
 }

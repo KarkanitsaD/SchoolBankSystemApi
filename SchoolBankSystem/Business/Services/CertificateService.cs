@@ -3,6 +3,7 @@ using Business.Models.Certificate;
 using Business.Services.IServices;
 using DAL.Entities;
 using DAL.Repositories.IRepositories;
+using System.Linq.Expressions;
 
 namespace Business.Services
 {
@@ -37,6 +38,24 @@ namespace Business.Services
         public async Task DeleteCertificateAsync(Guid certificateId)
         {
             await _repository.DeleteAsync(x => x.Id == certificateId);
+        }
+
+        public async Task<List<CertificateModel>> GetAllAsync(CertificateFilterModel filterModel)
+        {
+            Expression<Func<Certificate, bool>> filterPredicate = _ => true;
+
+            if (filterModel != null)
+            {
+                filterPredicate = x =>
+                (filterModel.Title == null || x.Title.ToLower().Contains(filterModel.Title.ToString())) &&
+                (filterModel.MinPrice == null || x.Price >= filterModel.MinPrice) &&
+                (filterModel.MaxPrice == null || x.Price <= filterModel.MaxPrice);
+            }
+
+            var certificates = await _repository.GetAllAsync(filterPredicate);
+            var result = _mapper.Map<List<Certificate>, List<CertificateModel>>(certificates);
+
+            return result;
         }
     }
 }

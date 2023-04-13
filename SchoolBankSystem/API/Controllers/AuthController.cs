@@ -34,6 +34,15 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost]
+    [Route("authenticate/teacher")]
+    public async Task<IActionResult> Authenticate()
+    {
+        var result = await _authService.AuthenticateTeacherAsync(User);
+
+        return Ok(result);
+    }
+
+    [HttpPost]
     [Route("register/teacher")]
     public async Task<IActionResult> RegisterTeacher(RegisterModel registerModel)
     {

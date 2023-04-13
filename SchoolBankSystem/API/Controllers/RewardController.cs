@@ -18,10 +18,11 @@ namespace API.Controllers
             _rewardService = rewardService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
+        [HttpPost]
+        [Route("search")]
+        public async Task<IActionResult> GetAll(RewardFilterModel filterModel)
         {
-            var result = await _rewardService.GetAllAsync();
+            var result = await _rewardService.GetAllAsync(filterModel);
 
             return Ok(result);
         }

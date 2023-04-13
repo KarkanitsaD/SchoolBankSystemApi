@@ -6,6 +6,8 @@ using Business.Models.Teacher;
 using Business.Services.IServices;
 using DAL.Entities;
 using DAL.Repositories.IRepositories;
+using System.Security.Claims;
+using System.Security.Principal;
 
 namespace Business.Services
 {
@@ -78,6 +80,19 @@ namespace Business.Services
             {
                 throw new Exception("User not found.");
             }
+
+            var teacher = _mapper.Map<Teacher, TeacherModel>(teacherEntity);
+            var jwt = _tokenService.GenerateTeacherJwt(teacher);
+            var authModel = new AuthenticationTeacherModel(teacher, jwt);
+
+            return authModel;
+        }
+
+        public async Task<AuthenticationTeacherModel> AuthenticateTeacherAsync(ClaimsPrincipal user)
+        {
+            var claimId = user.Claims.Where(x => x.Type == ClaimTypes.NameIdentifier).First().Value;
+            var id = Guid.Parse(claimId);
+            var teacherEntity = await _teacherRepository.GetFullTeacherAsync(x => x.Id == id);
 
             var teacher = _mapper.Map<Teacher, TeacherModel>(teacherEntity);
             var jwt = _tokenService.GenerateTeacherJwt(teacher);

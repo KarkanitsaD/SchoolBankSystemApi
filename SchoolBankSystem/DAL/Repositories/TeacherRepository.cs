@@ -11,7 +11,7 @@ namespace DAL.Repositories
         {
         }
 
-        public async Task<Teacher> GetFullTeacher(Expression<Func<Teacher, bool>> predicate)
+        public async Task<Teacher> GetFullTeacherAsync(Expression<Func<Teacher, bool>> predicate)
         {
             var result = await DbSet
                 .Include(x => x.StudentRewards)

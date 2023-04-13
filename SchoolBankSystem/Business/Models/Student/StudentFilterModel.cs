@@ -2,11 +2,11 @@
 {
     public class StudentFilterModel
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public string Surname { get; set; }
+        public string? Surname { get; set; }
 
-        public string Phone { get; set; }
+        public string? Phone { get; set; }
 
         public decimal? MinSum { get; set; }
 
