@@ -54,5 +54,14 @@ namespace API.Controllers
 
             return Ok(result);
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            await _rewardService.DeleteAsync(id);
+
+            return Ok();
+        }
     }
 }

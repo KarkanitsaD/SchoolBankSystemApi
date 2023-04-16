@@ -37,7 +37,14 @@ namespace Business.Services
 
         public async Task DeleteCertificateAsync(Guid certificateId)
         {
-            await _repository.DeleteAsync(x => x.Id == certificateId);
+            var certificate = await _repository.GetFirstAsync(x => x.Id == certificateId);
+            if (certificate == null)
+            {
+                throw new Exception("Not Found.");
+            }
+
+            certificate.IsDeleted = true;
+            await _repository.UpdateAsync(certificate);
         }
 
         public async Task<List<CertificateModel>> GetAllAsync(CertificateFilterModel filterModel)

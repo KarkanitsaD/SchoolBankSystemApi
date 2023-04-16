@@ -8,7 +8,8 @@ namespace Business.MappingProfiles
     {
         public RewardProfile()
         {
-            CreateMap<Reward, RewardModel>();
+            CreateMap<Reward, RewardModel>().ReverseMap();
+            CreateMap<AddRewardModel, Reward>();
         }
     }
 }

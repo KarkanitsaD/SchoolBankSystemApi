@@ -11,4 +11,6 @@ public class User
     public string Phone { get; set; }
 
     public string PasswordHash { get; set; }
+
+    public bool IsDeleted { get; set; }
 }

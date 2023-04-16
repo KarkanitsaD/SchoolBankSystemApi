@@ -11,5 +11,7 @@ namespace Business.Services.IServices
         Task<RewardModel> AddAsync(AddRewardModel rewardModel);
 
         Task<RewardModel> UpdateAsync(RewardModel rewardModel);
+
+        Task DeleteAsync(Guid id);
     }
 }

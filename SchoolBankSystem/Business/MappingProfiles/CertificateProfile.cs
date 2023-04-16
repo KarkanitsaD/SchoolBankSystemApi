@@ -8,7 +8,8 @@ namespace Business.MappingProfiles
     {
         public CertificateProfile()
         {
-            CreateMap<Certificate, CertificateModel>();
+            CreateMap<Certificate, CertificateModel>().ReverseMap();
+            CreateMap<AddCertificateModel, Certificate>();
         }
     }
 }

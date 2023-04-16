@@ -23,5 +23,22 @@ namespace API.Controllers
 
             return Ok(result);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateAsync(StudentModel student)
+        {
+            await _studentService.UpdateAsync(student);
+
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            await _studentService.DeleteAsync(id);
+
+            return Ok();
+        }
     }
 }

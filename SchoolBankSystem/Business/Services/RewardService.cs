@@ -38,8 +38,8 @@ namespace Business.Services
             if (rewardFilterModel != null)
             {
                 filterPredicate = x =>
-                (rewardFilterModel.Description == null || x.Description.ToLower().StartsWith(rewardFilterModel.Description.ToLower())) ||
-                (rewardFilterModel.MinSum == null || x.Sum >= rewardFilterModel.MinSum) ||
+                (rewardFilterModel.Description == null || x.Description.ToLower().StartsWith(rewardFilterModel.Description.ToLower())) &&
+                (rewardFilterModel.MinSum == null || x.Sum >= rewardFilterModel.MinSum) &&
                 (rewardFilterModel.MaxSum == null || x.Sum <= rewardFilterModel.MaxSum);
             }
 
@@ -68,6 +68,18 @@ namespace Business.Services
             await _rewardRepository.UpdateAsync(reward);
 
             return rewardModel;
+        }
+
+        public async Task DeleteAsync(Guid id)
+        {
+            var reward = await _rewardRepository.GetFirstAsync(x => x.Id == id);
+            if (reward == null)
+            {
+                throw new Exception("Reward not found.");
+            }
+
+            reward.IsDeleted = true;
+            await _rewardRepository.UpdateAsync(reward);
         }
     }
 }

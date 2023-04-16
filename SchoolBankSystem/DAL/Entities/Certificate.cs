@@ -10,5 +10,7 @@ public class Certificate
 
     public decimal Price { get; set; }
 
+    public bool IsDeleted { get; set; }
+
     public List<CertificatePurchase> CertificatePurchases { get; set; }
 }

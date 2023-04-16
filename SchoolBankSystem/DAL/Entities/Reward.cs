@@ -8,5 +8,7 @@ public class Reward
 
     public decimal Sum { get; set; }
 
+    public bool IsDeleted { get; set; }
+
     public List<StudentReward> StudentRewards { get; set; }
 }

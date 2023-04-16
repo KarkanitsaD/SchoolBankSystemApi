@@ -35,5 +35,31 @@ namespace Business.Services
 
             return result;
         }
+
+        public async Task UpdateAsync(TeacherModel model)
+        {
+            var teacher = await _teacherRepository.GetFirstAsync(x => x.Id == model.Id);
+            if (teacher == null)
+            {
+                throw new Exception("Not Found.");
+            }
+
+            teacher.Name = model.Name;
+            teacher.Surname = model.Surname;
+            teacher.Phone = model.Phone;
+            await _teacherRepository.UpdateAsync(teacher);
+        }
+
+        public async Task DeleteAsync(Guid id)
+        {
+            var teacher = await _teacherRepository.GetFirstAsync(x => x.Id == id);
+            if (teacher == null)
+            {
+                throw new Exception("Not Found.");
+            }
+
+            teacher.IsDeleted = true;
+            await _teacherRepository.UpdateAsync(teacher);
+        }
     }
 }

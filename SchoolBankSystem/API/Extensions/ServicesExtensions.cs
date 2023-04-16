@@ -22,6 +22,7 @@ namespace API.Extensions
                 .AddScoped(typeof(IStudentService), typeof(StudentService))
                 .AddScoped(typeof(ITeacherService), typeof(TeacherService))
                 .AddScoped(typeof(IRewardService), typeof(RewardService))
+                .AddScoped(typeof(ICertificateService), typeof(CertificateService))
                 ;
 
             return services;
