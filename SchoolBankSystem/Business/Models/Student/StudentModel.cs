@@ -16,12 +16,12 @@ namespace Business.Models.Student
 
         public decimal Sum { get; set; }
 
-        public List<CertificateModel> CertificatePurchases { get; set; }
+        public List<CertificateModel>? CertificatePurchases { get; set; }
 
-        public List<MoneyTransferModel> MoneyTransfersFromStudent { get; set; }
+        public List<MoneyTransferModel>? MoneyTransfersFromStudent { get; set; }
 
-        public List<MoneyTransferModel> MoneyTransfersToStudent { get; set; }
+        public List<MoneyTransferModel>? MoneyTransfersToStudent { get; set; }
 
-        public List<StudentRewardModel> StudentRewards { get; set; }
+        public List<StudentRewardModel>? StudentRewards { get; set; }
     }
 }
