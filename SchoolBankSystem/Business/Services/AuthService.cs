@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Business.Exceptions;
 using Business.Helpers;
 using Business.Models.Auth;
 using Business.Models.Student;
@@ -62,7 +63,7 @@ namespace Business.Services
             var studentEntity = await _studentRepository.GetFullStudentAsync(x => x.Phone == loginModel.Phone && x.PasswordHash == passwordHash);
             if (studentEntity == null)
             {
-                throw new Exception("User not found.");
+                throw new NotAuthenticatedException();
             }
 
             var student = _mapper.Map<Student, StudentModel>(studentEntity);
@@ -78,7 +79,7 @@ namespace Business.Services
             var teacherEntity = await _teacherRepository.GetFullTeacherAsync(x => x.Phone == loginModel.Phone && x.PasswordHash == passwordHash);
             if (teacherEntity == null)
             {
-                throw new Exception("User not found.");
+                throw new NotAuthenticatedException();
             }
 
             var teacher = _mapper.Map<Teacher, TeacherModel>(teacherEntity);
