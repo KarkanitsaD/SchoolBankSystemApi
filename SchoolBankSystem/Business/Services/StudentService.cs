@@ -10,9 +10,9 @@ namespace Business.Services
     public class StudentService : IStudentService
     {
         private readonly IMapper _mapper;
-        private readonly IRepository<Student> _studentRepository;
+        private readonly IStudentRepository _studentRepository;
 
-        public StudentService(IRepository<Student> studentRepository, IMapper mapper)
+        public StudentService(IStudentRepository studentRepository, IMapper mapper)
         {
             _studentRepository = studentRepository;
             _mapper = mapper;
@@ -65,6 +65,14 @@ namespace Business.Services
 
             student.IsDeleted = true;
             await _studentRepository.UpdateAsync(student);
+        }
+
+        public async Task<StudentModel> GetAsync(Guid id)
+        {
+            var student = await _studentRepository.GetFullStudentAsync(x => x.Id == id);
+            var studentModel = _mapper.Map<Student, StudentModel>(student);
+
+            return studentModel;
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Business.Models.Student;
+using Business.Constants;
 using Business.Services.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -13,6 +15,16 @@ namespace API.Controllers
         public StudentController(IStudentService studentService)
         {
             _studentService = studentService;
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        [Authorize(Policy = Roles.Teacher)]
+        public async Task<IActionResult> GetAsync(Guid id)
+        {
+            var result = await _studentService.GetAsync(id);
+
+            return Ok(result);
         }
 
         [HttpPost]
