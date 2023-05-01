@@ -1,6 +1,4 @@
-﻿using Business.Models.Student;
-
-namespace Business.Models.MoneyTransfer
+﻿namespace Business.Models.MoneyTransfer
 {
     public class MoneyTransferModel
     {
@@ -12,10 +10,14 @@ namespace Business.Models.MoneyTransfer
 
         public Guid StudentFromId { get; set; }
 
-        public StudentModel StudentFrom { get; set; }
+        public string StudentFromName { get; set; }
+
+        public string StudentFromSurname { get; set; }
 
         public Guid StudentToId { get; set; }
 
-        public StudentModel StudentTo { get; set; }
+        public string StudentToName { get; set; }
+
+        public string StudentToSurname { get; set; }
     }
 }

@@ -16,10 +16,10 @@ namespace Business.Models.StudentReward
 
         public Guid StudentId { get; set; }
 
-        public StudentModel Student { get; set; }
-
         public Guid TeacherId { get; set; }
 
         public TeacherModel Teacher { get; set; }
+
+        public DateTime Time { get; set; }
     }
 }
