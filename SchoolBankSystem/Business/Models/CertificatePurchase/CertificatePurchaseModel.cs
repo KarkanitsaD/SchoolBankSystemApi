@@ -20,5 +20,7 @@ namespace Business.Models.CertificatePurchase
         public Guid CertificateId { get; set; }
 
         public CertificateModel Certificate { get; set; }
+
+        public DateTime Time { get; set; }
     }
 }
