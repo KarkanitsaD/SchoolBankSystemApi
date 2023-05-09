@@ -15,7 +15,7 @@ namespace Business.Models.CertificatePurchase
 
         public string StudentName { get; set; }
 
-        public string StudentSunrame { get; set; }
+        public string StudentSurname { get; set; }
 
         public Guid CertificateId { get; set; }
 

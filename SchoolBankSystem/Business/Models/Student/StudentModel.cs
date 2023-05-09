@@ -22,6 +22,8 @@ namespace Business.Models.Student
 
         public List<MoneyTransferModel>? MoneyTransfersToStudent { get; set; }
 
+        public List<MoneyTransferModel>? MoneyTransfers { get; set; }
+
         public List<StudentRewardModel>? StudentRewards { get; set; }
     }
 }

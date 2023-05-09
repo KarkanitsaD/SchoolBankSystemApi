@@ -9,8 +9,21 @@ namespace Business.MappingProfiles
     {
         public StudentProfile()
         {
-            CreateMap<Student, StudentModel>();
+            CreateMap<Student, StudentModel>().ForMember(x => x.MoneyTransfers, act => act.MapFrom(x => JoinTransfers(x)));
             CreateMap<RegisterModel, Student>();
+        }
+
+        private List<MoneyTransfer>? JoinTransfers(Student student)
+        {
+            List<MoneyTransfer>? result = null;
+
+            if (student.MoneyTransfersFromStudent != null && student.MoneyTransfersToStudent != null)
+            {
+                student.MoneyTransfersFromStudent.AddRange(student.MoneyTransfersToStudent);
+                result = student.MoneyTransfersFromStudent.OrderByDescending(x => x.Time).ToList();
+            }
+
+            return result;
         }
     }
 }
