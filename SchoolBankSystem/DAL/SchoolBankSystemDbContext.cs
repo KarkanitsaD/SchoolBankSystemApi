@@ -32,6 +32,7 @@ public class SchoolBankSystemDbContext : DbContext
             .ApplyConfiguration(new RewardConfiguration())
             .ApplyConfiguration(new StudentRewardConfiguration())
             .ApplyConfiguration(new TeacherConfiguration())
+            .ApplyConfiguration(new ClassConfiguration())
             ;
     }
 }

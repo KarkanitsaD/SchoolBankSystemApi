@@ -1,4 +1,5 @@
 ﻿using Business.Models.CertificatePurchase;
+using Business.Models.Class;
 using Business.Models.MoneyTransfer;
 using Business.Models.StudentReward;
 
@@ -15,6 +16,10 @@ namespace Business.Models.Student
         public string Phone { get; set; }
 
         public decimal Sum { get; set; }
+
+        public Guid? ClassId { get; set; }
+
+        public ClassModel? Class { get; set; }
 
         public List<CertificatePurchaseModel>? CertificatePurchases { get; set; }
 

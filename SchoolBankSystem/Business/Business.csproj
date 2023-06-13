@@ -15,7 +15,6 @@
     <Folder Include="Models\Teacher\" />
     <Folder Include="Models\Student\" />
     <Folder Include="Helpers\" />
-    <Folder Include="MappingProfiles\" />
   </ItemGroup>
 
   <ItemGroup>

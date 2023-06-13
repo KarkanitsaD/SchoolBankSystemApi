@@ -52,6 +52,7 @@ namespace Business.Services
             student.Name = studentModel.Name;
             student.Surname = studentModel.Surname;
             student.Phone= studentModel.Phone;
+            student.ClassId = studentModel.ClassId;
             await _studentRepository.UpdateAsync(student);
         }
 

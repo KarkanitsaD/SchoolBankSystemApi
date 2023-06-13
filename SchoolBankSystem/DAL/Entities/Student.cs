@@ -4,6 +4,10 @@ public class Student : User
 {
     public decimal Sum { get; set; }
 
+    public Guid? ClassId { get; set; }
+
+    public Class? Class { get; set; }
+
     public List<CertificatePurchase> CertificatePurchases { get; set; }
 
     public List<StudentReward> StudentRewards { get; set; }

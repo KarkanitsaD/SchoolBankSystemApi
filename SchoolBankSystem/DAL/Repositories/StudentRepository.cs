@@ -23,6 +23,8 @@ namespace DAL.Repositories
                 .Include(x => x.StudentRewards).ThenInclude(x => x.Teacher)
                 .Include(x => x.StudentRewards).ThenInclude(x => x.Reward)
 
+                .Include(x => x.Class)
+
                 .Where(predicate)
                 .FirstOrDefaultAsync();
 
