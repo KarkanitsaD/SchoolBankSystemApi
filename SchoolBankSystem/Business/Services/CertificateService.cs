@@ -30,6 +30,7 @@ namespace Business.Services
         public async Task<CertificateModel> UpdateCertificateAsync(CertificateModel certificateModel)
         {
             var certificate = _mapper.Map<CertificateModel, Certificate>(certificateModel);
+            certificate.UpdateTime = DateTime.Now;
             await _repository.UpdateAsync(certificate);
 
             return certificateModel;

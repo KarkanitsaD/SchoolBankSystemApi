@@ -65,6 +65,7 @@ namespace Business.Services
         public async Task<RewardModel> UpdateAsync(RewardModel rewardModel)
         {
             var reward = _mapper.Map<RewardModel, Reward>(rewardModel);
+            reward.UpdateTime = DateTime.Now;
             await _rewardRepository.UpdateAsync(reward);
 
             return rewardModel;

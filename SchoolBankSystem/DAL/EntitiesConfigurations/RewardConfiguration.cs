@@ -11,6 +11,14 @@ public class RewardConfiguration : IEntityTypeConfiguration<Reward>
         builder.HasKey(x => x.Id);
 
         builder
+            .Property(x => x.CreateTime)
+            .HasDefaultValueSql("GETDATE()");
+
+        builder
+            .Property(x => x.UpdateTime)
+            .HasDefaultValueSql("GETDATE()");
+
+        builder
             .HasMany(x => x.StudentRewards)
             .WithOne(x => x.Reward)
             .HasForeignKey(x => x.RewardId);

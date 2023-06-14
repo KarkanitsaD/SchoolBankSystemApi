@@ -1,6 +1,6 @@
 ﻿namespace DAL.Entities;
 
-public class Certificate
+public class Certificate : CreateUpdateTimeEntity
 {
     public Guid Id { get; set; }
 

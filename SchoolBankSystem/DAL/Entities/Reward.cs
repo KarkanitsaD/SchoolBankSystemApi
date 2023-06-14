@@ -1,6 +1,6 @@
 ﻿namespace DAL.Entities;
 
-public class Reward
+public class Reward : CreateUpdateTimeEntity
 {
     public Guid Id { get; set; }
 
