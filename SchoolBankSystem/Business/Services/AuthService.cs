@@ -8,7 +8,7 @@ using Business.Services.IServices;
 using DAL.Entities;
 using DAL.Repositories.IRepositories;
 using System.Security.Claims;
-using System.Security.Principal;
+using File = DAL.Entities.File;
 
 namespace Business.Services
 {
@@ -42,6 +42,11 @@ namespace Business.Services
 
             var student = _mapper.Map<RegisterModel, Student>(registerModel);
             student.PasswordHash = GetPasswordHash(registerModel.Password);
+            student.Image = new File
+            {
+                Extension = registerModel.ImageExtension,
+                Content = Base64Converter.Base64ToBytes(registerModel.ImageBase64)
+            };
             await _studentRepository.CreateAsync(student);
         }
 

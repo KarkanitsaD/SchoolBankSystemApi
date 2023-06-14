@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using Business.Helpers;
 using Business.Models.Student;
 using Business.Services.IServices;
 using DAL.Entities;
 using DAL.Repositories.IRepositories;
 using System.Linq.Expressions;
+using File = DAL.Entities.File;
 
 namespace Business.Services
 {
@@ -11,11 +13,13 @@ namespace Business.Services
     {
         private readonly IMapper _mapper;
         private readonly IStudentRepository _studentRepository;
+        private readonly IRepository<File> _fileRepository;
 
-        public StudentService(IStudentRepository studentRepository, IMapper mapper)
+        public StudentService(IStudentRepository studentRepository, IMapper mapper, IRepository<File> fileRepository)
         {
             _studentRepository = studentRepository;
             _mapper = mapper;
+            _fileRepository = fileRepository;
         }
 
         public async Task<List<StudentModel>> GetAllAsync(StudentFilterModel studentFilterModel)
@@ -53,7 +57,22 @@ namespace Business.Services
             student.Surname = studentModel.Surname;
             student.Phone= studentModel.Phone;
             student.ClassId = studentModel.ClassId;
+            var imageId = student.ImageId;
+            if (studentModel.ImageId == null && !string.IsNullOrEmpty(studentModel.ImageBase64) && !string.IsNullOrEmpty(studentModel.ImageExtension))
+            {
+                student.Image = new File
+                {
+                    Content = Convert.FromBase64String(studentModel.ImageBase64),
+                    Extension = studentModel.ImageExtension
+                };
+                student.ImageId = studentModel.ImageId;
+            }
             await _studentRepository.UpdateAsync(student);
+
+            if (imageId != null && studentModel.ImageId == null)
+            {
+                await _fileRepository.DeleteAsync(x => x.Id == imageId);
+            }
         }
 
         public async Task DeleteAsync(Guid id)

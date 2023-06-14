@@ -17,6 +17,12 @@ namespace Business.Models.Student
 
         public decimal Sum { get; set; }
 
+        public Guid? ImageId { get; set; }
+
+        public string ImageBase64 { get; set; }
+
+        public string ImageExtension { get; set; }
+
         public Guid? ClassId { get; set; }
 
         public ClassModel? Class { get; set; }

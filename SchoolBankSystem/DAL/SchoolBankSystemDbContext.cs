@@ -1,6 +1,7 @@
 ﻿using DAL.Entities;
 using DAL.EntitiesConfigurations;
 using Microsoft.EntityFrameworkCore;
+using File = DAL.Entities.File;
 
 namespace DAL;
 
@@ -20,6 +21,8 @@ public class SchoolBankSystemDbContext : DbContext
 
     public DbSet<Teacher> Teachers { get; set; }
 
+    public DbSet<File> Files { get; set; }
+
     public SchoolBankSystemDbContext(DbContextOptions<SchoolBankSystemDbContext> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -33,6 +36,7 @@ public class SchoolBankSystemDbContext : DbContext
             .ApplyConfiguration(new StudentRewardConfiguration())
             .ApplyConfiguration(new TeacherConfiguration())
             .ApplyConfiguration(new ClassConfiguration())
+            .ApplyConfiguration(new FileConfiguration())
             ;
     }
 }

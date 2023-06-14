@@ -8,6 +8,10 @@ public class Student : User
 
     public Class? Class { get; set; }
 
+    public Guid? ImageId { get; set; }
+
+    public File? Image { get; set; }
+
     public List<CertificatePurchase> CertificatePurchases { get; set; }
 
     public List<StudentReward> StudentRewards { get; set; }

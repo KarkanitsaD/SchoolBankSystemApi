@@ -14,7 +14,6 @@
     <Folder Include="Models\CertificatePurchase\" />
     <Folder Include="Models\Teacher\" />
     <Folder Include="Models\Student\" />
-    <Folder Include="Helpers\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,5 +9,9 @@
         public string Phone { get; set; }
 
         public string Password { get; set; }
+
+        public string ImageBase64 { get; set; }
+
+        public string ImageExtension { get; set; }
     }
 }
